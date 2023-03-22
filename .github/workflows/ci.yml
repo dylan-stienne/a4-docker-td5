@@ -46,6 +46,13 @@ jobs:
       - name: Run tests 🧪
         run: npm run test
 
+  cd:
+    needs: ci
+    runs-on: ubuntu-latest
+    steps:
+      - name: Npm install
+        run: npm install
+
       - name: Generate project
         run: npm run generate
 
