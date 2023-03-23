@@ -72,8 +72,11 @@ jobs:
           username: ${{github.repository_owner}}
           password: ${{secrets.TOKEN}}
 
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          push: true
-          tags: dylan-stienne/hosting-nuxt:latest
+      - name: Build new image
+        run: docker build . -t iim-docker-td5
+
+      - name: Create tag image
+        run: docker tag iim-docker-td5 ghcr.io/dylan-stienne/hosting-nuxt:1.0.0
+
+      - name: Push tag image
+        run: docker push ghcr.io/dylan-stienne/hosting-nuxt:1.0.0
