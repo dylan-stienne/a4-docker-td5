@@ -49,11 +49,11 @@ jobs:
       - name: Generate project
         run: npm run generate
 
-      - name: Store build
+      - name: Store dist
         uses: actions/upload-artifact@v3
         with:
           name: ${{ github.sha }}
-          path: build
+          path: dist
 
   cd:
     needs: ci
@@ -65,7 +65,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: ${{ github.sha }}
-          path: build
+          path: dist
 
       - name: Login
         uses: docker/login-action@v1
