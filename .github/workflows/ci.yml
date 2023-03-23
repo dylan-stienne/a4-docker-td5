@@ -59,6 +59,14 @@ jobs:
           node-version: ${{ matrix.node }}
           check-latest: true
 
+      - name: Cache node_modules 📦
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Npm install
         run: npm install
 
@@ -76,4 +84,4 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: ${{github.repository_owner.lowercase}}/hosting-nuxt:latest
+          tags: dylan-stienne/hosting-nuxt:latest
