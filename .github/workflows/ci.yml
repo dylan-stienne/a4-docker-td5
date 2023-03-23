@@ -76,4 +76,4 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: ${{github.repository_owner}}/hosting-nuxt:latest
+          tags: ${{github.repository_owner.lowercase}}/hosting-nuxt:latest
